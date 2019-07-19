@@ -11,7 +11,9 @@ export class BugService {
         return this.http.get<Bug[]>(`${config.apiUrl}/bugs`);
     }
 
-    register(bug: Bug) {
+    register(bug: Bug, owner: string) {
+        bug.owner = owner;
+        console.log(owner);
         return this.http.post(`${config.apiUrl}/bugs/register`, bug);
     }
 

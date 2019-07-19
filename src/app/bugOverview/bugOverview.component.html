@@ -1,6 +1,6 @@
 <h1>Report a Bug</h1>
 <p>Click the button below to report a bug. Check the list of known bugs to prevent duplicates.</p>
-<a routerLink="bugreport">
+<a routerLink="/bugreport">
 <button [disabled]="loading" class="btn btn-primary">
     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
     Report a Bug
@@ -11,9 +11,7 @@
 <h3>Known bugs:</h3>
 <ul>
     <li *ngFor="let bug of bugs">
-        {{bug.title}} ({{bug.owner}} - {{bug.state}} - {{bug.priority}}) : <em>{{user.lastName}}</em>
-        - <a (click)="deleteBug(bug.id)" class="text-danger">Delete</a>
+        <strong>{{bug.title}}</strong> ({{bug.state}} - {{bug.priority}} - {{bug.owner}}):&nbsp;
+        <em>{{bug.description}}</em> - <a (click)="deleteBug(bug.id)" class="text-danger">Delete</a>
     </li>
 </ul>
-
-<router-outlet></router-outlet>

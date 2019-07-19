@@ -11,24 +11,24 @@ You are asked to build a simple bug-tracking system from scratch, with following
 
 **User**
 
-    * A user can log in with a valid username and password through a login screen
-    * A user can create bugs in a form
-    * A user can get an overview of all bugs on an overview page
+    * A user can log in with a valid username and password through a login screen **X**
+    * A user can create bugs in a form **X**
+    * A user can get an overview of all bugs on an overview page **X**
 
 
 
 **Bug**
 
-    * A bug has a title and description
-    * A bug has a user as its owner, and can be assigned to the same or other users
-    * A bug can have a state (eg. open, assigned, closed)
+    * A bug has a title and description **X**
+    * A bug has a user as its owner, and can be assigned to the same or other users **X**
+    * A bug can have a state (eg. open, assigned, closed) **X**
 
 
 **Bonus**
 Some nice to haves, when there is time to spare.
 
     * Add inline validation (without page refresh) to the login form
-    * A bug can have a severity level (eg. trivial, low, medium, high, critical)
+    * A bug can have a severity level (eg. trivial, low, medium, high, critical) **X**
     * Add roles (eg. admin, dev, support)
     * A user with admin role can add/remove users
     * Add an auto-save feature that saves the entry of a bug every 10 seconds

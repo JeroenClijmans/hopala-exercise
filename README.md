@@ -1,12 +1,19 @@
+# How to use
+
+    * Install NodeJS and NPM from https://nodejs.org/en/download/
+    * Install all required npm packages by running npm install from the command line in the project root folder (where the package.json is located).
+    * Start the application by running npm start from the command line in the project root folder.
+    * Your browser should automatically open at http://localhost:8080
+
 # Hopala exercise
 
 You are asked to build a simple bug-tracking system from scratch, with following specifications.
 
 **User**
 
-    A user can log in with a valid username and password through a login screen
-    A user can create bugs in a form
-    A user can get an overview of all bugs on an overview page
+    * A user can log in with a valid username and password through a login screen
+    * A user can create bugs in a form
+    * A user can get an overview of all bugs on an overview page
 
 
 

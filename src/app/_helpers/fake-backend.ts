@@ -90,9 +90,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return error('Title "' + bug.title + '" is already taken')
             }
 
-            bug.id = bugs.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            bug.id = bugs.length ? Math.max(...bugs.map(x => x.id)) + 1 : 1;
             bugs.push(bug);
-            localStorage.setItem('bugs', JSON.stringify(users));
+            localStorage.setItem('bugs', JSON.stringify(bugs));
 
             return ok();
         }
@@ -106,7 +106,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!isLoggedIn()) return unauthorized();
 
             bugs = bugs.filter(x => x.id !== idFromUrl());
-            localStorage.setItem('bugs', JSON.stringify(users));
+            localStorage.setItem('bugs', JSON.stringify(bugs));
             return ok();
         }
 

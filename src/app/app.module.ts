@@ -13,6 +13,8 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
+import { BugOverviewComponent} from './bugOverview';
+import { BugReportComponent} from './bugReport';
 
 @NgModule({
     imports: [
@@ -26,6 +28,8 @@ import { AlertComponent } from './_components';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        BugOverviewComponent,
+        BugReportComponent,
         AlertComponent
     ],
     providers: [

@@ -5,6 +5,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
+let bugs = JSON.parse(localStorage.getItem('bugs')) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -28,6 +29,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/bugs/register') && method === 'POST':
+                    return registerBug();
+                case url.endsWith('/bugs') && method === 'GET':
+                    return getBugs();
+                case url.match(/\/bugs\/\d+$/) && method === 'DELETE':
+                    return deleteBug();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -73,6 +80,33 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
+            return ok();
+        }
+
+        function registerBug() {
+            const bug = body
+
+            if (bugs.find(x => x.title === bug.title)) {
+                return error('Title "' + bug.title + '" is already taken')
+            }
+
+            bug.id = bugs.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            bugs.push(bug);
+            localStorage.setItem('bugs', JSON.stringify(users));
+
+            return ok();
+        }
+
+        function getBugs() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(bugs);
+        }
+
+        function deleteBug() {
+            if (!isLoggedIn()) return unauthorized();
+
+            bugs = bugs.filter(x => x.id !== idFromUrl());
+            localStorage.setItem('bugs', JSON.stringify(users));
             return ok();
         }
 

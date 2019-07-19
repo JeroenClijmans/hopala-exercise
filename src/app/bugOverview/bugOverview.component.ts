@@ -1,34 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { User } from '@/_models';
-import { UserService, AuthenticationService } from '@/_services';
+import '../_content/app.less';
 
-@Component({ templateUrl: 'bugOverview.component.html' })
+import { User } from '@/_models';
+import { BugService, AuthenticationService } from '@/_services';
+
+@Component({selector: 'app', templateUrl: 'bugOverview.component.html' })
 export class BugOverviewComponent implements OnInit {
     currentUser: User;
-    users = [];
+    bugs = [];
 
     constructor(
+        private router: Router,
         private authenticationService: AuthenticationService,
-        private userService: UserService
+        private bugService: BugService
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+        this.loadAllBugs();
     }
 
-    deleteUser(id: number) {
-        this.userService.delete(id)
+    deleteBug(id: number) {
+        this.bugService.delete(id)
             .pipe(first())
-            .subscribe(() => this.loadAllUsers());
+            .subscribe(() => this.loadAllBugs());
     }
 
-    private loadAllUsers() {
-        this.userService.getAll()
+    private loadAllBugs() {
+        this.bugService.getAll()
             .pipe(first())
-            .subscribe(users => this.users = users);
+            .subscribe(bugs => this.bugs = bugs);
     }
 }
